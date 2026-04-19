@@ -3,8 +3,6 @@ package com.hospital.system;
 import com.hospital.system.Entity.Appointment;
 import com.hospital.system.Entity.Insurance;
 import com.hospital.system.Entity.Patient;
-import com.hospital.system.Repository.AppointmentRepository;
-import com.hospital.system.Repository.DoctorRepository;
 import com.hospital.system.Repository.InsuranceRepository;
 import com.hospital.system.service.AppointmentService;
 import com.hospital.system.service.InsuranceService;
@@ -16,13 +14,14 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @SpringBootTest
-public class testinsurance {
+public class TestInsurance {
 
         @Autowired
         private InsuranceService insuranceService;
         @Autowired
         private AppointmentService  appointmentService;
-
+        @Autowired
+        private InsuranceRepository insuranceRepository;
     @Test
     public void test(){
         Insurance insurance= Insurance.builder()
@@ -32,6 +31,8 @@ public class testinsurance {
                 .build();
          Patient patient=insuranceService.assignInsurance(insurance,1L);
          System.out.println(patient);
+         Patient newpationt=insuranceService.disassociateInsurance(patient.getId());
+         System.out.println(newpationt);
     }
     @Test
     public void test1(){
@@ -41,6 +42,7 @@ public class testinsurance {
                 .build();
         Appointment newappointment=appointmentService.createAppointment(appointment,2L,1L);
         System.out.println(newappointment);
+
 
     }
 

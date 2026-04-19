@@ -31,5 +31,11 @@ public class InsuranceService {
         patientRepository.save(patient);
         return patient;
     }
+    @Transactional
+    public Patient disassociateInsurance(Long patient_id){
+        Patient patient = patientRepository.findById(patient_id).orElseThrow(()-> new RuntimeException("patient not found"));
+        patient.setInsurance(null);
+        return patient;
+    }
 
 }

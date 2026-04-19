@@ -31,7 +31,7 @@ public class Patient {
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createdAt;
-    @OneToOne(cascade = {CascadeType.REMOVE, CascadeType.MERGE , CascadeType.PERSIST} )
+    @OneToOne(cascade = {CascadeType.REMOVE, CascadeType.MERGE , CascadeType.PERSIST},orphanRemoval = true )
     @JoinColumn(name = "insurance_id")
     private Insurance insurance;
     @OneToMany(mappedBy = "patient",cascade = {CascadeType.REMOVE},orphanRemoval = true)
