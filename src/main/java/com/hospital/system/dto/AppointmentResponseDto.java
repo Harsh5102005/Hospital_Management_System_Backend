@@ -10,10 +10,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class AppointmentDto {
+public class AppointmentResponseDto {
     private Long id;
     private String reason;
     private LocalDateTime appointmentTime;
     private Long patientId;
-
 }

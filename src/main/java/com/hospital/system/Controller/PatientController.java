@@ -1,6 +1,7 @@
 package com.hospital.system.Controller;
 
 import com.hospital.system.Entity.Patient;
+import com.hospital.system.dto.PatientRequestDto;
 import com.hospital.system.dto.PatientResponseDto;
 import com.hospital.system.service.PatientService;
 import lombok.RequiredArgsConstructor;
@@ -23,8 +24,9 @@ public class PatientController {
         return patientService.getbyId(id);
     }
     @PostMapping
-    public ResponseEntity<Patient> addPatient(@RequestBody Patient patient){
-       return patientService.createPatient(patient);
+    public ResponseEntity<PatientResponseDto> addPatient(@RequestBody PatientRequestDto patient){
+       PatientResponseDto resp= patientService.createPatient(patient);
+       return ResponseEntity.status(201).body(resp);
     }
 
 

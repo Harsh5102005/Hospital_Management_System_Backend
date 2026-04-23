@@ -5,17 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PatientResponseDto {
+public class PatientRequestDto {
     private Long id;
     private String name;
-    private String Gender;
-    private LocalDate birthdate;
+    private String gender;
     private String email;
-    private List<AppointmentResponseDto> appointments;
-
+    private LocalDate birthdate;
 }

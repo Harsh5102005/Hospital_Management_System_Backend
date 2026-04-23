@@ -2,7 +2,8 @@ package com.hospital.system.service;
 
 import com.hospital.system.Entity.Patient;
 import com.hospital.system.Repository.PatientRepository;
-import com.hospital.system.dto.AppointmentDto;
+import com.hospital.system.dto.AppointmentResponseDto;
+import com.hospital.system.dto.PatientRequestDto;
 import com.hospital.system.dto.PatientResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +15,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PatientService {
     private final PatientRepository patientRepository;
-    public ResponseEntity<Patient> createPatient(Patient patient){
-        patientRepository.save(patient);
-        return ResponseEntity.ok().body(patient);
+    public PatientResponseDto createPatient(PatientRequestDto patient){
+        Patient patient1=new Patient();
+            patient1.setId(patient.getId());
+            patient1.setGender(patient.getGender());
+            patient1.setName(patient.getName());
+            patient1.setEmail(patient.getEmail());
+            patient1.setBirthdate(patient.getBirthdate());
+            Patient patient2= patientRepository.save(patient1);
+            return mapToDto(patient2);
     }
     public List<PatientResponseDto> getPatients(){
         List<Patient> patients = patientRepository.findAll();
@@ -34,10 +41,10 @@ public class PatientService {
         patientResponseDto.setGender(patient.getGender());
         patientResponseDto.setEmail(patient.getEmail());
         patientResponseDto.setBirthdate(patient.getBirthdate());
-        List<AppointmentDto> appointmentDtos = patient.getAppointment()
+        List<AppointmentResponseDto> appointmentResponseDtos = patient.getAppointment()
                 .stream()
                 .map(app -> {
-                    AppointmentDto a = new AppointmentDto();
+                    AppointmentResponseDto a = new AppointmentResponseDto();
                     a.setId(app.getId());
                     a.setReason(app.getReason());
                     a.setAppointmentTime(app.getAppointmentTime());
@@ -46,7 +53,7 @@ public class PatientService {
                 })
                 .toList();
 
-        patientResponseDto.setAppointments(appointmentDtos);
+        patientResponseDto.setAppointments(appointmentResponseDtos);
         return patientResponseDto;
     }
 
