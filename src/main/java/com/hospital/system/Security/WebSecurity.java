@@ -27,9 +27,9 @@ public class WebSecurity {
                 .authorizeHttpRequests(auth->auth
 
 
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
+
                         .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers("/doctors/**").hasAnyRole("DOCTOR","ADMIN")
+
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
