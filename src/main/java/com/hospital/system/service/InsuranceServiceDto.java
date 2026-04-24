@@ -66,9 +66,8 @@ public class InsuranceServiceDto {
         Patient patient = patientRepository.findById(patientId)
                 .orElseThrow(() -> new RuntimeException("Patient not found with id: " + patientId));
 
-        insurance.setPatient(patient);
+        // Only set on the owning side (Patient) - this automatically updates both sides
         patient.setInsurance(insurance);
-        insuranceRepository.save(insurance);
         patientRepository.save(patient);
 
         return mapPatientToDto(patient);
