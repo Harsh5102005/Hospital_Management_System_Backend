@@ -366,23 +366,11 @@ Contributions are welcome! Here's how:
 
 ---
 
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
----
-
 ## 👤 Author
 
 **Harsh Maurya**
 - GitHub: [@harsh5102005](https://github.com/harsh5102005)
----
 
-## 📞 Support
-
-For support, email support@example.com or open an issue in the GitHub repository.
-
----
 
 ## 🎯 Key Achievements
 
